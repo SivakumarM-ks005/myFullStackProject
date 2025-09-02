@@ -133,10 +133,10 @@ router.get('/checkToken', auth.authenticateToken, (req, res) => {
 });
 
 router.post('/changePassword',auth.authenticateToken,(req, res) => {
-    const user = req.body;
+    const user = req.body
     const email = res.locals.email;
-    console.log(email);
-    var query = "select * from user where email=? and password=?";
+    console.log(email)
+    query = "select * from user where email=? and password=?";
     connection.query(query, [email,user.oldPassword], (err, results) => {
         if (!err) {
             if (results.length <= 0) {
