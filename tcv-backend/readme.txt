@@ -7,3 +7,17 @@
 in the terminal type "node"
 then 
 require('crypto').ramdomBytes(64).toString('hex');
+
+npm install ejs html-pdf path uuid
+
+
+productDetails:" [{\"id\":1, \"name\":\"Black coffee\",\"price\":99,\"total\":99,\"category\":\"coffee\",\"quantity\":\"1\"}]";
+
+{
+    "name":"btech day",
+    "email": "timecablevision@gmail.com",
+    "contactNumber": 9962543540,
+    "paymentMethod":cash",
+    "total": 1000,
+    "productDetails":"[{\"id\":1, \"name\":\"Black coffee\",\"price\":99,\"total\":99,\"category\":\"coffee\",\"quantity\":\"1\"}]"
+}

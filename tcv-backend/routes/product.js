@@ -29,7 +29,7 @@ router.get('/get', auth.authenticateToken,(req, res, next)=>{
     })
 });
 
-router.get('/getByCategoryId/:id', auth.authenticateToken,(res, results)=>{
+router.get('/getByCategoryId/:id', auth.authenticateToken,(req, res, next)=>{
     const id = req.params.id;
     query ="select id, name from product where categoryId =? and status='true'";
     connection.query(query,[id], (err, results)=>{
@@ -69,6 +69,38 @@ router.patch('/update', auth.authenticateToken, checkRole.checkRole,(req, res, n
             return res.status(500).json(err);
         }
     })
-})
+});
+
+router.delete('/detete/:id', auth.authenticateToken, checkRole.checkRole,(req, res, newxt)=>{
+    const id = req.params.id;
+    query="delete from product where id=?";
+    connection.query(query,[id],(err, results)=>{
+        if(!err){
+            if(results.affectedRows==0){
+                return res.status(404).json({ message : "Record not found"});
+            }
+            return res.status(200).json({ message : "Record deleted successfully"});
+        }
+        else{
+            return res.status(500).json(err);
+        }
+    })
+});
+
+router.patch('/updateStatus', auth.authenticateToken, checkRole.checkRole,(err, req, next)=>{
+    const user = req.body;
+    query ="update product set status=? where id =?";
+    connection.query(query,[user.status, user.id],(err, results)=>{
+        if(!err){
+            if(results.affectedRows==0){
+                return res.status(404).json({ message: "product id not does not found"});
+            }
+            return res.status(200).json({ message: "Product status updated successfully"});
+        }
+        else{
+            return res.status(500).json(err);
+        }
+    })
+});
 
 module.exports = router
