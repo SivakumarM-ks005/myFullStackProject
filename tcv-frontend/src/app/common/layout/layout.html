@@ -1,0 +1,24 @@
+<mat-toolbar class="header-toobar">
+  <button matIconButton class="header-icon" (click)="toggleSidebar()" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+  <span>My App</span>
+  <span class="header-spacer"></span>
+  <button matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="content-container">
+  <mat-drawer mode="side"  [opened]="showSidebar" class="sidebar">
+    Drawer content
+</mat-drawer>
+  <mat-drawer-content class="main-content">
+    <h1>Main content</h1>
+<router-outlet/>
+</mat-drawer-content>
+</mat-drawer-container>
