@@ -15,4 +15,10 @@ export class User {
       headers: new HttpHeaders().set('content-type', "application/json")
     });
   }
+
+  forgotPassword(data:any):Observable<any>{
+    return this.http.post(`${this.url}/user/forgotPassword`, data,{
+      headers:new HttpHeaders().set('content-type',"application/json")
+    });
+  }
 }

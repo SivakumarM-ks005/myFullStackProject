@@ -7,6 +7,7 @@ import { RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Signup } from '../../signup/signup';
+import { ForgotPassword } from '../../forgot-password/forgot-password';
 @Component({
   selector: 'app-layout',
   imports: [
@@ -35,7 +36,11 @@ constructor(
     dialogConfig.width = "700px";
     this.dialog.open(Signup, dialogConfig);
   }
-
+  forgotPasswordAction(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width ="550px";
+    this.dialog.open(ForgotPassword, dialogConfig);
+  }
   ngOnInit(){
     this.oberser.observe([Breakpoints.Handset]).subscribe(result=>{
       // console.log("result", result);
