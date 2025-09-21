@@ -15,8 +15,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 
 @Component({
-  selector: 'app-signup',
-  
+  selector: 'app-signup',  
   imports: [MatFormFieldModule,MatInputModule, MatError, MatToolbarRow, MatToolbar, MatDialogModule, FormsModule,
     ReactiveFormsModule, CommonModule
   ],

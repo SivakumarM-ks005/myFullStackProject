@@ -21,4 +21,14 @@ export class User {
       headers:new HttpHeaders().set('content-type',"application/json")
     });
   }
+
+  login(data:any):Observable<any>{
+    return this.http.post(`${this.url}/user/login`,data,{
+      headers: new HttpHeaders().set('content-type', "application/json")
+    })
+  }
+
+  checkToken():Observable<any>{
+    return this.http.get(`${this.url}/user/checkToken`);
+  }
 }

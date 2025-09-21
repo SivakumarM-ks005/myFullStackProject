@@ -3,11 +3,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Signup } from '../../signup/signup';
 import { ForgotPassword } from '../../forgot-password/forgot-password';
+import { Login } from '../../login/login';
+import { User} from '../../services/user'
+import { response } from 'express';
 @Component({
   selector: 'app-layout',
   imports: [
@@ -26,12 +29,31 @@ export class Layout {
   showSidebar = true;
 constructor( 
   private oberser: BreakpointObserver,
-  private dialog: MatDialog
+  private dialog: MatDialog,
+  private router: Router,
+  private userService : User
  ){}
   toggleSidebar(){
     this.showSidebar = this.showSidebar? false : true;
   }
-  signupAction(){
+ 
+  ngOnInit(){
+    this.oberser.observe([Breakpoints.Handset]).subscribe(result=>{
+      // console.log("result", result);
+      this.isMobile = result.matches;
+    });
+    const token =localStorage.getItem('token')
+    console.log(token);
+    if(token!= null){
+      this.userService.checkToken().subscribe((response:any)=>{
+        this.router.navigate(['/tcv/dashboard']);
+      },(error:any)=>{
+        console.log(error);
+      })
+    }
+  }
+
+   signupAction(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "700px";
     this.dialog.open(Signup, dialogConfig);
@@ -41,10 +63,9 @@ constructor(
     dialogConfig.width ="550px";
     this.dialog.open(ForgotPassword, dialogConfig);
   }
-  ngOnInit(){
-    this.oberser.observe([Breakpoints.Handset]).subscribe(result=>{
-      // console.log("result", result);
-      this.isMobile = result.matches;
-    })
+  loginAction(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width ="550px";
+    this.dialog.open(Login,dialogConfig)
   }
 }

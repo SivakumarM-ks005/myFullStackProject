@@ -60,3 +60,5 @@ For more information on using the Angular CLI, including detailed command refere
 
 
  ## https://tdev.app/ngx-ui-loader/demo/
+
+ ## npm i jwt-decoder
