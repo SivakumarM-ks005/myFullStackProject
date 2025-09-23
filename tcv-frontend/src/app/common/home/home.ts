@@ -4,27 +4,28 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { Snackbar } from '../services/snackbar';
-import { User } from '../services/user';
+import { Snackbar } from '../../services/snackbar';
+import { User } from '../../services/user';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { globalConstant } from '../shared/global-constants';
+import { globalConstant } from '../../shared/global-constants';
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { NgIf } from '@angular/common';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { DialogRef } from '@angular/cdk/dialog';
 
+
 @Component({
-  selector: 'app-login',
-  imports: [MatFormFieldModule, MatInputModule, MatError, MatToolbarRow, MatToolbar,  FormsModule,
+  selector: 'app-home',
+   imports: [MatFormFieldModule, MatInputModule, MatError, MatToolbarRow, MatToolbar,  FormsModule,
     ReactiveFormsModule, CommonModule
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss'
+  templateUrl: './home.html',
+  styleUrl: './home.scss'
 })
-export class Login {
-  loginForm: any = FormGroup
+export class Home {
+loginForm: any = FormGroup
   responseMessgae: any
 
   constructor(
@@ -32,7 +33,6 @@ export class Login {
     private router: Router,
     private snackbarServcie: Snackbar,
     private userService: User,
-    // private dialogRef: MatDialogRef<Login>,
     private ngxService: NgxUiLoaderService
   ) { }
 

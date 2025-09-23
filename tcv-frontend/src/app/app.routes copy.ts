@@ -2,12 +2,19 @@ import { Routes } from '@angular/router';
 import { Layout } from './common/layout/layout';
 import { Dashboards } from './dashboards/dashboards'
 import { RouteGuard } from './services/route-guard';
-import { Home } from './common/home/home'
-import { Login } from './login/login';
+import { Login } from './login/login'
 
 export const routes: Routes = [
-      { path: '', component: Login },
-      {
+     {
+        path:'',
+        redirectTo: 'Login',
+        // pathMatch:'full'
+    },
+    {
+        path:'',
+        component: Login,
+    },
+        {
         path:'tcv',
         component: Layout,
         children:[
@@ -20,5 +27,6 @@ export const routes: Routes = [
                 // }
             }
             
-        ]},
+        ]
+    }
 ];

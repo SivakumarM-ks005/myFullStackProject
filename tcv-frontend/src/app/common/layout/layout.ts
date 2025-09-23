@@ -8,7 +8,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Signup } from '../../signup/signup';
 import { ForgotPassword } from '../../forgot-password/forgot-password';
-import { Login } from '../../login/login';
+// import { Login } from '../../login/login';
 import { User} from '../../services/user'
 import { response } from 'express';
 @Component({
@@ -42,16 +42,20 @@ constructor(
       // console.log("result", result);
       this.isMobile = result.matches;
     });
-
+if (typeof window !== 'undefined' && localStorage) {
     const token =localStorage.getItem('token');
     console.log(token);
     if(token != null){
       this.userService.checkToken().subscribe((response:any)=>{
         this.router.navigate(['/tcv/dashboards']);
       },(error:any)=>{
+        
         console.log(error);
       })
+    }else {
+      this.router.navigate(['/tcv']);
     }
+  }
   }
 
    signupAction(){
@@ -64,9 +68,9 @@ constructor(
     dialogConfig.width ="550px";
     this.dialog.open(ForgotPassword, dialogConfig);
   }
-  loginAction(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width ="550px";
-    this.dialog.open(Login,dialogConfig)
-  }
+  // loginAction(){
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.width ="550px";
+  //   this.dialog.open(Login,dialogConfig)
+  // }
 }

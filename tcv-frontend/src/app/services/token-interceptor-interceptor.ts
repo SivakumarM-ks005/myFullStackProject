@@ -19,7 +19,7 @@ export const tokenInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
           if(router.url === '/tcv'){}
           else{
             localStorage.clear();
-            router.navigate(['/tcv'])
+            router.navigate(['/login'])
           }
         }
       }

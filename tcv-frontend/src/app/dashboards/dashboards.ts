@@ -20,10 +20,11 @@ export class Dashboards {
       this.dashboardData();
     }
     dashboardData(){
-      this.dashboardService.getDetails().subscribe((response:any)=>{
+      this.dashboardService.getDetails().subscribe({
+        next:     (response:any)=>{
         this.ngxService.stop();
         this.data = response;
-      },(error)=>{
+      },error:(error)=>{
         this.ngxService.stop();
         console.log(error);
         if(error.error?.message){
@@ -32,6 +33,8 @@ export class Dashboards {
         else {
           this.responseMessage = globalConstant.genericError
         }
-      })
+      }
+      }
+    )
     }
 }
