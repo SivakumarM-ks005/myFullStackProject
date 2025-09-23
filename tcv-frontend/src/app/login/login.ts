@@ -50,21 +50,40 @@ export class Login {
       email: formData.email,
       password: formData.password
     }
-    this.userService.login(data).subscribe((response) => {
-      this.ngxService.stop();
-      this.dialogRef.close();
-      localStorage.setItem('token', response.token);
-      this.router.navigate(['/tcv/dashboard']);
-    }, (error) => {
-      this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessgae = error.error?.message
-      }
-      else {
-        this.responseMessgae = globalConstant.genericError
-      }
-      this.snackbarServcie.openSnackBar(this.responseMessgae, globalConstant.error)
-    }
-    )
+
+    this.userService.login(data).subscribe({
+      next: (response) => {
+        console.log('Success', response);
+        this.ngxService.stop();
+        this.dialogRef.close();
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/tcv/dashboards']);
+      },
+      error: (error) => {
+        console.error('Error', error);
+      },
+      complete: () => {
+        console.log('Completed');
+      },
+    });
+
+
+    // this.userService.login(data).subscribe(
+    //   (response) => {
+    //     this.ngxService.stop();
+    //     this.dialogRef.close();
+    //     localStorage.setItem('token', response.token);
+    //     this.router.navigate(['/tcv/dashboards']);
+    //   }, (error) => {
+    //     this.ngxService.stop();
+    //     if (error.error?.message) {
+    //       this.responseMessgae = error.error?.message
+    //     }
+    //     else {
+    //       this.responseMessgae = globalConstant.genericError
+    //     }
+    //     this.snackbarServcie.openSnackBar(this.responseMessgae, globalConstant.error)
+    //   }
+    // )
   }
 }

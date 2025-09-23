@@ -42,11 +42,12 @@ constructor(
       // console.log("result", result);
       this.isMobile = result.matches;
     });
-    const token =localStorage.getItem('token')
+
+    const token =localStorage.getItem('token');
     console.log(token);
-    if(token!= null){
+    if(token != null){
       this.userService.checkToken().subscribe((response:any)=>{
-        this.router.navigate(['/tcv/dashboard']);
+        this.router.navigate(['/tcv/dashboards']);
       },(error:any)=>{
         console.log(error);
       })
