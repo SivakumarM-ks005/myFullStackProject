@@ -24,6 +24,7 @@ export class Dashboards {
         next:     (response:any)=>{
         this.ngxService.stop();
         this.data = response;
+        console.log(this.data);
       },error:(error)=>{
         this.ngxService.stop();
         console.log(error);

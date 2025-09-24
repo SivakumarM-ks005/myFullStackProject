@@ -6,19 +6,21 @@ import { Home } from './common/home/home'
 import { Login } from './login/login';
 
 export const routes: Routes = [
-      { path: '', component: Login },
-      {
-        path:'tcv',
+    //  { path: '', redirectTo: '/', pathMatch:'full' },
+    { path: '', component: Login },
+    {
+        path: '',
         component: Layout,
-        children:[
+        children: [
             {
-                path:'dashboards',
+                path: 'dashboards',
                 component: Dashboards,
-                // canActivate:[ RouteGuard],
-                // data:{
-                //     expectedRole :['admin','user']
-                // }
+                canActivate: [RouteGuard],
+                data: {
+                    expectedRole: ['admin', 'user']
+                }
             }
-            
-        ]},
+
+        ]
+    },
 ];

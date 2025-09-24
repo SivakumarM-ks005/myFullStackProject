@@ -47,13 +47,13 @@ if (typeof window !== 'undefined' && localStorage) {
     console.log(token);
     if(token != null){
       this.userService.checkToken().subscribe((response:any)=>{
-        this.router.navigate(['/tcv/dashboards']);
+        this.router.navigate(['/dashboards']);
       },(error:any)=>{
         
         console.log(error);
       })
     }else {
-      this.router.navigate(['/tcv']);
+      this.router.navigate(['/']);
     }
   }
   }
