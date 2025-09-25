@@ -8,6 +8,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Signup } from '../../signup/signup';
 import { ForgotPassword } from '../../forgot-password/forgot-password';
+import { Sidebar } from '../../sidebar/sidebar';
 // import { Login } from '../../login/login';
 import { User} from '../../services/user'
 import { response } from 'express';
@@ -19,6 +20,7 @@ import { response } from 'express';
     MatButtonModule,
     MatSidenavModule,
     RouterOutlet,
+    Sidebar
     
 ],
   templateUrl: './layout.html',
