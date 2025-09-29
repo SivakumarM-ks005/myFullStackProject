@@ -17,7 +17,8 @@ import { response } from 'express';
 
 @Component({
   selector: 'app-forgot-password',
-   imports: [MatFormFieldModule,MatInputModule, MatError, MatToolbarRow, MatToolbar, MatDialogModule, FormsModule,
+   imports: [MatFormFieldModule,MatInputModule, MatError, MatToolbarRow, MatToolbar, 
+    MatDialogModule, FormsModule,
     ReactiveFormsModule, CommonModule
   ],
   templateUrl: './forgot-password.html',

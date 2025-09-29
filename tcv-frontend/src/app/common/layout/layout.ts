@@ -14,6 +14,7 @@ import { User } from '../../services/user'
 import { response } from 'express';
 import { MatMenuModule } from '@angular/material/menu';
 import { Confirmation } from '../../dialog/confirmation/confirmation';
+import { Changepassword } from '../../changepassword/changepassword';
 
 @Component({
   selector: 'app-layout',
@@ -91,6 +92,11 @@ export class Layout {
       localStorage.clear();
       this.router.navigate(['/']);
     })
+  }
 
+  changePassword(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width= "550px";
+    this.dialog.open(Changepassword, dialogConfig)
   }
 }
