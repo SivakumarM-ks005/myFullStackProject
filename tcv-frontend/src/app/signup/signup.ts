@@ -58,7 +58,7 @@ export class Signup {
         this.dialogRef.close();
         this.responseMessage = response?.message;
         this.snackbarService.openSnackBar(this.responseMessage, "");
-         this.router.navigate(['/tcv/dashboards']);
+         this.router.navigate(['/dashboards']);
       }, error: (error) => {
         this.ngxService.stop();
         if (error.error?.message) {

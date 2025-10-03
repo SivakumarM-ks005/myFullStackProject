@@ -4,6 +4,7 @@ import { Dashboards } from './dashboards/dashboards'
 import { RouteGuard } from './services/route-guard';
 import { Home } from './common/home/home'
 import { Login } from './login/login';
+import { ManageCategory } from './material/manage-category/manage-category';
 
 export const routes: Routes = [
     //  { path: '', redirectTo: '/', pathMatch:'full' },
@@ -19,6 +20,15 @@ export const routes: Routes = [
                 data: {
                     expectedRole: ['admin', 'user']
                 }
+            },
+            {
+                path:'category',
+                component: ManageCategory,
+                canActivate: [RouteGuard],
+                data: {
+                    expectedRole: ['admin']
+                }
+
             }
 
         ]

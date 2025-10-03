@@ -25,7 +25,7 @@ export class RouteGuard {
       tokenPayload = jwtDecode(token)
     } catch (error) {
       localStorage.clear();
-      this.router.navigate(['/tcv']);
+      this.router.navigate(['/']);
     }
   }
     let checkRole = false;
@@ -40,11 +40,11 @@ export class RouteGuard {
         return true
       }
       this.snackbarService.openSnackBar(globalConstant.unauthorized, globalConstant.error);
-      this.router.navigate(['/tcv/dashboards']);
+      this.router.navigate(['/dashboards']);
       return false;
     }
     else {
-      this.router.navigate(['/tcv']);
+      this.router.navigate(['/']);
       localStorage.clear();
       return false;
     }

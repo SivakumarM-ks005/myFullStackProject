@@ -54,7 +54,7 @@ loginForm: any = FormGroup
        next: (response) => {
         this.ngxService.stop();
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/tcv/dashboards']);
+        this.router.navigate(['/dashboards']);
       }, error: (error) => {
         this.ngxService.stop();
         if (error.error?.message) {
