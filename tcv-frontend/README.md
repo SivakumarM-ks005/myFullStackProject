@@ -62,3 +62,7 @@ For more information on using the Angular CLI, including detailed command refere
  ## https://tdev.app/ngx-ui-loader/demo/
 
  ## npm i jwt-decoder
+
+ Need to install file save for pdf generation
+
+ ## npm i file-saver @types/file-saver

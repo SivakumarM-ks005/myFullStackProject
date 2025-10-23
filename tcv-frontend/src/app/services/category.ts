@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class Category {
-  [x: string]: any;
   url = environment.apiUrl;
 
   constructor(private http: HttpClient){}
