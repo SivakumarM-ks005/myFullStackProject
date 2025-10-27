@@ -37,10 +37,10 @@ export class ProductServices {
     })
   }
 
-  getProductsByCategory(id:any):Observable<any>{
-    return this.http.get(this.url+"/product/getByCategory/"+id);
+  getProductsByCategory(id:any){
+    return this.http.get(this.url+"/product/getByCategoryId/"+id);
   }
   getById(id:any):Observable<any>{
-    return this.http.get(this.url+"product/getById/"+id);
+    return this.http.get(`${this.url}/product/getById/${id}`);
   }
 }
