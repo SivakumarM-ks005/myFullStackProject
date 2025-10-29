@@ -7,6 +7,7 @@ import { Login } from './login/login';
 import { ManageCategory } from './material/manage-category/manage-category';
 import { ManageProduct } from './material/manage-product/manage-product';
 import { ManageOrder } from './material/manage-order/manage-order';
+import { ViewBill } from './material/view-bill/view-bill';
 
 export const routes: Routes = [
     //  { path: '', redirectTo: '/', pathMatch:'full' },
@@ -42,6 +43,14 @@ export const routes: Routes = [
              {
                 path:'order',
                 component: ManageOrder,
+                canActivate: [RouteGuard],
+                data: {
+                    expectedRole: ['admin','user']
+                }
+            },
+            {
+                path:'view-bill',
+                component: ViewBill,
                 canActivate: [RouteGuard],
                 data: {
                     expectedRole: ['admin','user']

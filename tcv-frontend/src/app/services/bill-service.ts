@@ -18,4 +18,14 @@ export class BillService {
   getPdf(data:any):Observable<Blob>{
     return this.http.post(this.url+"/bill/getPdf/", data,{responseType:'blob'});
   }
+
+  getBills(){
+    return this.http.get(this.url+"/bill/getBill/");
+  }
+
+  delete(id:any){
+    this.http.delete(this.url+"/bill/deleteBill/"+id,{
+      headers:new HttpHeaders().set('content-type',"application/json")
+    })
+  }
 }

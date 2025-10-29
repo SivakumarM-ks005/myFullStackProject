@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+<mat-toolbar-row fxLayout="row">
+    <span class="title-center">View Bill</span>
+</mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <table id="customer">
+        <tr>
+            <td>Name : {{data.name}}</td>
+              <td>Email : {{data.email}}</td>
+        </tr>
+        <tr>
+            <td>Payment Method : {{data.paymentMethod}}</td>
+              <td>Total : {{data.total}}</td>
+        </tr>
+    </table>
+  
+    <div class="d-flex justify-content-between">
+ <button matButton="filled" mat-dialog-close>close</button>
+ </div>
+</mat-dialog-content>
