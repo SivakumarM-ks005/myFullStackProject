@@ -9,11 +9,12 @@ import { CommonModule, NgIf } from '@angular/common';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { DialogRef } from '@angular/cdk/dialog';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-dialog-view-bill-products',
- imports: [MatFormFieldModule,MatInputModule,NgIf,
-     MatDialogModule, FormsModule,
+ imports: [MatFormFieldModule,MatInputModule,
+     MatDialogModule, FormsModule,MatTableModule,
     ReactiveFormsModule, CommonModule ,MatToolbarRow, MatToolbar,], 
   templateUrl: './dialog-view-bill-products.html',
   styleUrl: './dialog-view-bill-products.scss'
@@ -28,9 +29,9 @@ export class DialogViewBillProducts {
 
 
   ngOnInit():void{
-    this.data =  this.dialogData.data.productDetails;
+    this.data =  this.dialogData.data;
     console.log("conssle", this.data);
-    this.dataSource = JSON.parse(this.data)
+    this.dataSource = JSON.stringify(this.dialogData.data.productDetails)
     
   }
 }
