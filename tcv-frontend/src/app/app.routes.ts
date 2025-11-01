@@ -8,6 +8,7 @@ import { ManageCategory } from './material/manage-category/manage-category';
 import { ManageProduct } from './material/manage-product/manage-product';
 import { ManageOrder } from './material/manage-order/manage-order';
 import { ViewBill } from './material/view-bill/view-bill';
+import { ManageUser } from './material/manage-user/manage-user';
 
 export const routes: Routes = [
     //  { path: '', redirectTo: '/', pathMatch:'full' },
@@ -54,6 +55,14 @@ export const routes: Routes = [
                 canActivate: [RouteGuard],
                 data: {
                     expectedRole: ['admin','user']
+                }
+            },
+            {
+                path:'view-users',
+                component: ManageUser,
+                canActivate: [RouteGuard],
+                data: {
+                    expectedRole: ['admin']
                 }
             }
 

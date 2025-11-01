@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Product } from '../product/product';
 import { Confirmation } from '../../dialog/confirmation/confirmation';
 import { DialogViewBillProducts } from '../dialog-view-bill-products/dialog-view-bill-products';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-view-bill',
   imports: [MatFormFieldModule,MatCardModule,MatTableModule,MatInputModule],
@@ -71,7 +72,50 @@ export class ViewBill {
     })
     console.log("this data", values)
   }
-  downloadReportAction(values:any){}
+  downloadReportAction(values:any){
+    this.ngxService.start();
+    var data = {
+      name:values.name,
+      email:values.email,
+      uuid:values.uuid,
+      contactNumber:values.contactNumber,
+      paymentMethod:values.paymentMethod,
+      totalAmount: values.total,
+      productDetails:values.productDetails
+    }
+    this.billSerive.getPdf(data).subscribe((response:any)=>{
+      saveAs(response, values.uuid+ 'pdf');
+      this.ngxService.stop();
+    })
+  }
 
-  handleDeleteAction(values:any){}
+  handleDeleteAction(values:any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={
+      message: 'dalete'+ values.name+ 'bill'
+    }
+    const dialogRef = this.dialog.open(Confirmation, dialogConfig);
+    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
+      this.ngxService.stop();
+      this.deleteProduct(values.id);
+      dialogRef.close();
+    })
+  }
+  deleteProduct(id:any){
+    this.billSerive.delete(id).subscribe({
+      next:(response:any)=>{
+        this.ngxService.stop();
+        this.tableData();
+        this.responseMessage = response?.message;
+        this.snackbarService.openSnackBar(this.responseMessage,"Success");
+      },error:(error:any)=>{
+        if(error.error?.message){
+          this.responseMessage= error.error?.message;
+        }else{
+          this.responseMessage = globalConstant.genericError
+        }
+        this.snackbarService.openSnackBar(this.responseMessage, globalConstant.error);
+      }
+    })
+  }
 }
